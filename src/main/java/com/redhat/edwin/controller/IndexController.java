@@ -1,6 +1,7 @@
 package com.redhat.edwin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class IndexController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping("/")
+    @GetMapping(value="/", produces = MediaType.APPLICATION_JSON_VALUE)
     public String helloWorld() {
         ResponseEntity<String> response =
                 restTemplate.getForEntity("https://ssl-pods-example-2:8443/", String.class);
